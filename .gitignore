@@ -1,6 +1,9 @@
 # environmental
 .phpintel
 
+# assets files
+/public/assets/images/kurir/*
+
 /vendor/
 node_modules/
 npm-debug.log
