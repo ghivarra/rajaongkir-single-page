@@ -7,7 +7,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $allKurir = KurirModel::getAllAvailable('is_cek_resi');
+        $allKurir = KurirModel::getAllAvailable('cek_resi');
         dd($allKurir);
     }
 

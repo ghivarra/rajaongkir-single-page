@@ -37,14 +37,15 @@ class KurirModel extends Model
 
     //=====================================================================================================
 
-    public static function getAllAvailable(string $column = 'is_cek_ongkir')
+    public static function getAllAvailable(string $column = 'cek_ongkir')
     {
         if (empty(self::$allKurir))
         {
             self::getAllActive();
         }
 
-        $kurir = [];
+        $column = "is_{$column}";
+        $kurir  = [];
 
         foreach (self::$allKurir as $item):
 
