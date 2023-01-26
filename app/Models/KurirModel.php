@@ -13,9 +13,6 @@ class KurirModel extends Model
     protected $primaryKey = 'id';
     protected $keyType = 'string';
 
-    public $incrementing = TRUE;
-    public $timestamps = TRUE;
-
     protected $guarded = [];
     protected $fillable = ['id', 'nama', 'nama_pendek', 'logo', 'is_aktif', 'is_cek_ongkir', 'is_cek_resi', 'is_lokal', 'is_internasional', 'warna'];
 
