@@ -1,0 +1,39 @@
+:root {
+	--col-utama: #6a7feb;
+	--col-kedua: #ecb90c;
+}
+
+* {
+	transition: color .5ms linear;
+}
+
+#svg {
+	display: none;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+}
+
+main {
+	min-height: calc(100vh - 122px);
+}
+
+.text-utama {
+	color: var(--col-utama);
+}
+
+/* HEADER  */
+.header-logo {
+	max-width: 50px;
+	height: auto;
+}
+
+/* FOOTER  */
+.footer-heart {
+	fill: var(--col-utama);
+	height: 16px;
+	width: 16px;
+	position: relative;
+	bottom: 2px;
+}
