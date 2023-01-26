@@ -9,15 +9,8 @@ class KurirTarifKecamatanModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'permohonan_lsp';
+    protected $table = 'kurir_tarif_kecamatan';
     protected $primaryKey = 'id';
-    protected $keyType = 'string';
-
-    public $incrementing = TRUE;
-    public $timestamps = TRUE;
-
-    protected $guarded = [];
-    protected $fillable = ['id', 'nama', 'nama_pendek', 'logo', 'is_aktif', 'is_cek_ongkir', 'is_cek_resi', 'is_lokal', 'is_internasional', 'warna'];
-
-    protected $dispatchesEvents = [];
+    
+    protected $fillable = ['id', 'kecamatan_asal_id', 'kecamatan_tujuan_id', 'last_update', 'kurir_id', 'berat', 'dimensi_panjang', 'dimensi_lebar', 'dimensi_tinggi', 'dimensi_diameter', 'rincian_biaya'];
 }
