@@ -1,8 +1,3 @@
-:root {
-	--col-utama: #6a7feb;
-	--col-kedua: #ecb90c;
-}
-
 * {
 	transition: color .5ms linear;
 }
@@ -19,8 +14,8 @@ main {
 	min-height: calc(100vh - 122px);
 }
 
-.text-utama {
-	color: var(--col-utama);
+.btn-outline-primary:hover {
+	color: var(--bs-light);
 }
 
 /* HEADER  */
@@ -31,9 +26,16 @@ main {
 
 /* FOOTER  */
 .footer-heart {
-	fill: var(--col-utama);
+	fill: var(--bs-primary);
 	height: 16px;
 	width: 16px;
 	position: relative;
 	bottom: 2px;
+}
+
+/* MAIN  */
+.main-section {
+	width: 100%;
+	min-width: 300px;
+	max-width: 500px;
 }
