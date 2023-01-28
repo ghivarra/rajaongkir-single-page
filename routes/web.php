@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LacakPaketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,6 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+
+// lacak paket xhr
+Route::post('/lacak-paket', [LacakPaketController::class, 'index']);
