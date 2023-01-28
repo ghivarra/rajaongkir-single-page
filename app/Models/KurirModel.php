@@ -74,4 +74,42 @@ class KurirModel extends Model
     }
 
     //=====================================================================================================
+
+    public static function getAllNotAvailable(string $column = 'cek_ongkir', array $select = NULL)
+    {
+        if (empty(self::$allKurir))
+        {
+            self::getAllActive();
+        }
+
+        $column = "is_{$column}";
+        $kurir  = [];
+
+        foreach (self::$allKurir as $item):
+
+            if ($item[$column] == 0)
+            {
+                if (empty($select))
+                {
+                    array_push($kurir, $item);
+
+                } else {
+
+                    $newItem = [];
+
+                    foreach ($select as $key)
+                    {
+                        $newItem[$key] = $item[$key];
+                    }
+
+                    array_push($kurir, $newItem);
+                }
+            }
+
+        endforeach;
+
+        return $kurir;
+    }
+
+    //=====================================================================================================
 }
