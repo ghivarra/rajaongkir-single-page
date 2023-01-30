@@ -80,6 +80,15 @@ class LacakPaketController extends Controller
             ]);
         }
 
+        if (!isset($res['rajaongkir']))
+        {
+            return response()->json([
+                'code'        => 400,
+                'status'      => 'warning',
+                'description' => 'Resi pengiriman yang anda input sudah kadaluarsa'
+            ]);
+        }
+
         // mutasi rajaongkir
         $rajaongkir = $res['rajaongkir'];
 
@@ -92,6 +101,50 @@ class LacakPaketController extends Controller
                 'description' => $rajaongkir['status']['description']
             ]);
         }
+
+        // cek error kadaluarsa
+        if (empty($rajaongkir['result']['summary']['waybill_number']))
+        {
+            return response()->json([
+                'code'        => 400,
+                'status'      => 'warning',
+                'description' => 'Resi pengiriman yang anda input sudah kadaluarsa'
+            ]);
+        }
+
+        // mutasi data manifest ke history & details date
+        $historyDate = [];
+
+        foreach ($rajaongkir['result']['manifest'] as $n => $item):
+
+            if (!in_array($item['manifest_date'], $historyDate))
+            {
+                // push and get key
+                array_push($historyDate, $item['manifest_date']);
+                $key = array_search($item['manifest_date'], $historyDate);
+
+                // create
+                $rajaongkir['result']['history'][$key] = [
+                    'day'       => id_time('EEEE', strtotime($item['manifest_date'])),
+                    'date'      => id_time('dd MMM YYYY', strtotime($item['manifest_date'])),
+                    'manifests' => []
+                ];
+
+            } else {
+
+                $key = array_search($item['manifest_date'], $historyDate);
+            }
+
+            array_push($rajaongkir['result']['history'][$key]['manifests'], [
+                'code' => $item['manifest_code'],
+                'time' => "{$item['manifest_time']} WIB",
+                'desc' => $item['manifest_description'],
+            ]);
+
+        endforeach;
+
+        // mutasi details
+        $rajaongkir['result']['details']['datetime'] = id_time('dd MMM YYYY - HH:mm', strtotime("{$rajaongkir['result']['details']['waybill_date']} {$rajaongkir['result']['details']['waybill_time']}")) . ' WIB';
 
         // return json
         return response()->json([
