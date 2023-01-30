@@ -186,7 +186,7 @@ cekResiForm.addEventListener('submit', function(e) {
 					left: pos.left,
 					behavior: 'smooth'
 				});
-			}, 300);
+			}, 400);
 		}
 	});
 });

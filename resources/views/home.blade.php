@@ -78,40 +78,45 @@
 				</figure>
 			</div>
 
-			<div class="mb-5">
-				<h5 id="cr-title-1" class="fw-bold mb-4">Status Pengiriman</h5>
-				<p id="cr-status" class="fw-bold fs-5"></p>
-			</div>
 			
-			<div class="mb-5">
+			
+			<div class="d-block d-lg-flex mb-5">
 				
-				<div class="mb-5">
-					<h5 id="cr-title-2" class="fw-bold mb-4">Detail Pengiriman</h5>
-					<div class="row mb-4 mb-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-						<div class="col">
-							<h6 class="fw-bold">No. Resi</h6>
-							<p id="cr-detail-resi"></p>
+				<div class="mb-5 me-4">
+
+					<div class="mb-5">
+						<h5 id="cr-title-1" class="fw-bold mb-4">Status Pengiriman</h5>
+						<p id="cr-status" class="fw-bold fs-5"></p>
+					</div>
+
+					<div class="mb-4">
+						<h5 id="cr-title-2" class="fw-bold mb-4">Detail Pengiriman</h5>
+						<div class="row mb-4 mb-lg-0 row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+							<div class="col">
+								<h6 class="fw-bold">No. Resi</h6>
+								<p id="cr-detail-resi"></p>
+							</div>
+							<div class="col">
+								<h6 class="fw-bold">Waktu Pengiriman</h6>
+								<p id="cr-detail-datetime"></p>
+							</div>
+							<div class="col">
+								<h6 class="fw-bold">Kota/Kode Pos Asal</h6>
+								<p id="cr-detail-shipper-city"></p>
+							</div>
+							<div class="col">
+								<h6 class="fw-bold">Kota/Kode Pos Tujuan</h6>
+								<p id="cr-detail-receiver-city"></p>
+							</div>	
+							<div class="col">
+								<h6 class="fw-bold">Pengirim</h6>
+								<p id="cr-detail-shipper"></p>
+							</div>
+							<div class="col">
+								<h6 class="fw-bold">Penerima</h6>
+								<p id="cr-detail-receiver"></p>
+							</div>			
 						</div>
-						<div class="col">
-							<h6 class="fw-bold">Waktu Pengiriman</h6>
-							<p id="cr-detail-datetime"></p>
-						</div>
-						<div class="col">
-							<h6 class="fw-bold">Kota/Kode Pos Asal</h6>
-							<p id="cr-detail-shipper-city"></p>
-						</div>
-						<div class="col">
-							<h6 class="fw-bold">Kota/Kode Pos Tujuan</h6>
-							<p id="cr-detail-receiver-city"></p>
-						</div>	
-						<div class="col">
-							<h6 class="fw-bold">Pengirim</h6>
-							<p id="cr-detail-shipper"></p>
-						</div>
-						<div class="col">
-							<h6 class="fw-bold">Penerima</h6>
-							<p id="cr-detail-receiver"></p>
-						</div>			
 					</div>
 				</div>
 
