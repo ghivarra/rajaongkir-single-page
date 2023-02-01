@@ -246,6 +246,51 @@ function getOrigin(query = '', originSelectChoice) {
 	}, timeout);
 }
 
+function getDestination(query = '', destinationSelectChoice) {
+	if (throttleDestinationSearchTimeout) {
+		clearTimeout(throttleDestinationSearchTimeout);
+	}
+
+	throttleDestinationSearchTimeout = setTimeout(function() {
+
+		// cek lokal/internasional
+		let type = document.querySelector('input[name="co-jenis"]:checked').value;
+		let lokasi = (type == 'lokal') ? 'Kecamatan/Kota' : 'Negara';
+
+		xhrGET({
+			link: url('get/lokasi/tujuan') + '?type=' + encodeURI(type) + '&query=' + encodeURI(query),
+			catch: function() {
+				Swal.fire({
+					title: 'Gagal Mengambil Data '+ lokasi +' Tujuan',
+					text: 'Server sedang mengalami gangguan, silahkan coba lagi dalam beberapa menit',
+					icon: 'warning',
+					allowOutsideClick: true,
+					showConfirmButton: true,
+				});
+			},
+			error: function() {
+				Swal.fire({
+					title: 'Gagal Mengambil Data Kurir',
+					text: 'Gagal menghubungi server, periksa koneksi internet anda',
+					icon: 'error',
+					allowOutsideClick: true,
+					showConfirmButton: true,
+				});
+			},
+			success: function(res) {
+				res = JSON.parse(res);
+				destinationSelectChoice.clearChoices();
+				setTimeout(function() {
+					destinationSelectChoice.setChoices(res.result);
+				}, 200);
+			}
+		});
+
+		clearTimeout(throttleDestinationSearchTimeout);
+
+	}, timeout);
+}
+
 ready(function() {
 
 	const originSelectChoice = new Choices(originSelect, {
@@ -255,7 +300,9 @@ ready(function() {
 	});
 
 	const destinationSelectChoice = new Choices(destinationSelect, {
-		allowHTML: false
+		allowHTML: false,
+		itemSelectText: '',
+		searchResultLimit: 50,
 	});
 
 	document.getElementById('co-jenis-lokal').addEventListener('change', function(e) {
@@ -379,5 +426,10 @@ ready(function() {
 	originSelect.addEventListener('search', function(item) {
 		let query = item.detail.value;
 		getOrigin(query, originSelectChoice);
+	});
+
+	destinationSelect.addEventListener('search', function(item) {
+		let query = item.detail.value;
+		getDestination(query, destinationSelectChoice);
 	});
 });
