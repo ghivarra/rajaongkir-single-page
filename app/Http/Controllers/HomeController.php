@@ -21,6 +21,7 @@ class HomeController extends Controller
     public function index()
     {
         $data = [
+            'lokalKurir'               => KurirModel::getAllAvailable('lokal', ['id', 'nama_pendek', 'nama']),
             'cekResiKurir'             => KurirModel::getAllAvailable('cek_resi', ['id', 'nama_pendek', 'nama']),
             'cekResiKurirNotAvailable' => KurirModel::getAllNotAvailable('cek_resi', ['id', 'nama_pendek', 'nama'])
         ];

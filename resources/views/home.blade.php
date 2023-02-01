@@ -52,6 +52,11 @@
 		  					<label for="co-kurir" class="form-label mb-2 fw-bold">Jasa Ekspedisi/Kurir</label>
 		  					<select id="co-kurir" name="courier" class="form-select" required>
 		  						<option value="">Pilih Kurir</option>
+
+		  						@foreach ($lokalKurir as $kurir)
+		  							<option value="{{ $kurir['id'] }}">{{ $kurir['nama_pendek'] }} - {{ $kurir['nama'] }}</option>
+		  						@endforeach
+
 		  					</select>
 		  				</div>
 

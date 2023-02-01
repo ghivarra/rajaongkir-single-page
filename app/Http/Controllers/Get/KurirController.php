@@ -23,16 +23,20 @@ class KurirController extends Controller
 {
     public function lokal(Request $request)
     {
-        $kurir = KurirModel::getAllAvailable('lokal', ['id', 'nama']);
-        return response()->json($kurir);
+        return response()->json([
+            'code'   => 200,
+            'result' => KurirModel::getAllAvailable('lokal', ['id', 'nama', 'nama_pendek'])
+        ]);
     }
 
     //===========================================================================================
 
     public function internasional(Request $request)
     {
-        $kurir = KurirModel::getAllAvailable('internasional', ['id', 'nama']);
-        return response()->json($kurir);
+        return response()->json([
+            'code'   => 200,
+            'result' => KurirModel::getAllAvailable('internasional', ['id', 'nama', 'nama_pendek'])
+        ]);
     }
 
     //===========================================================================================

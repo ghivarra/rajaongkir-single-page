@@ -186,3 +186,108 @@ cekResiForm.addEventListener('submit', function(e) {
 		}
 	});
 });
+
+// cek ongkir
+var postUrl = url('cek-ongkir/lokal');
+const cekOngkirForm = document.getElementById('co-form');
+const kurirSelect = document.getElementById('co-kurir');
+
+document.getElementById('co-jenis-lokal').addEventListener('change', function(e) {
+	if (!this.checked) {
+		return;
+	}
+
+	postUrl = url('cek-ongkir/lokal');
+	cekOngkirForm.reset();
+
+	xhrGET({
+		link: url('get/kurir/lokal'),
+		catch: function() {
+			Swal.fire({
+				title: 'Gagal Mengambil Data Kurir',
+				text: 'Server sedang mengalami gangguan, silahkan coba lagi dalam beberapa menit',
+				icon: 'warning',
+				allowOutsideClick: true,
+				showConfirmButton: true,
+			});
+		},
+		error: function() {
+			Swal.fire({
+				title: 'Gagal Mengambil Data Kurir',
+				text: 'Gagal menghubungi server, periksa koneksi internet anda',
+				icon: 'error',
+				allowOutsideClick: true,
+				showConfirmButton: true,
+			});
+		},
+		success: function(res) {
+			kurirSelect.innerHTML = '';
+
+			let defaultOption = document.createElement('option');
+			defaultOption.setAttribute('value', '');
+			defaultOption.innerText = 'Pilih Kurir';
+			kurirSelect.appendChild(defaultOption);
+
+			res = JSON.parse(res);
+
+			if (res.result.length > 0) {
+				Array.prototype.forEach.call(res.result, function(item, i) {
+					let option = document.createElement('option');
+					option.setAttribute('value', item.id);
+					option.innerText = item.nama_pendek + ' - ' + item.nama;
+					kurirSelect.appendChild(option);
+				});
+			}
+		}
+	});
+});
+
+document.getElementById('co-jenis-internasional').addEventListener('change', function(e) {
+	if (!this.checked) {
+		return;
+	}
+
+	postUrl = url('cek-ongkir/internasional');
+	cekOngkirForm.reset();
+
+	xhrGET({
+		link: url('get/kurir/internasional'),
+		catch: function() {
+			Swal.fire({
+				title: 'Gagal Mengambil Data Kurir',
+				text: 'Server sedang mengalami gangguan, silahkan coba lagi dalam beberapa menit',
+				icon: 'warning',
+				allowOutsideClick: true,
+				showConfirmButton: true,
+			});
+		},
+		error: function() {
+			Swal.fire({
+				title: 'Gagal Mengambil Data Kurir',
+				text: 'Gagal menghubungi server, periksa koneksi internet anda',
+				icon: 'error',
+				allowOutsideClick: true,
+				showConfirmButton: true,
+			});
+		},
+		success: function(res) {
+			kurirSelect.innerHTML = '';
+
+			let defaultOption = document.createElement('option');
+			defaultOption.setAttribute('value', '');
+			defaultOption.innerText = 'Pilih Kurir';
+			kurirSelect.appendChild(defaultOption);
+
+			res = JSON.parse(res);
+
+			if (res.result.length > 0) {
+				Array.prototype.forEach.call(res.result, function(item, i) {
+					let option = document.createElement('option');
+					option.setAttribute('value', item.id);
+					option.innerText = item.nama_pendek + ' - ' + item.nama;
+					kurirSelect.appendChild(option);
+				});
+			}
+		}
+	});
+});
