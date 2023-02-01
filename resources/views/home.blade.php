@@ -60,6 +60,20 @@
 		  					</select>
 		  				</div>
 
+		  				<div class="form-group mb-4">
+		  					<label for="co-origin" class="form-label mb-2 fw-bold">Asal</label>
+		  					<select id="co-origin" name="origin" class="form-select" required>
+		  						<option value="">Tulis Kecamatan/Kota Asal</option>
+		  					</select>
+		  				</div>
+
+		  				<div class="form-group mb-4">
+		  					<label for="co-destination" class="form-label mb-2 fw-bold">Tujuan</label>
+		  					<select id="co-destination" name="destination" class="form-select" required>
+		  						<option value="">Tulis Kecamatan/Kota Tujuan</option>
+		  					</select>
+		  				</div>
+
 		  				<div class="form-action">
 		  					<button type="submit" class="btn btn-primary text-light me-2">Cek Tarif</button>
 		  					<button type="reset" class="btn btn-outline-primary">Kosongkan</button>

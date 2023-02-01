@@ -1,4 +1,6 @@
 const cekResiForm = document.getElementById('pills-lacak-paket');
+const originSelect = document.getElementById('co-origin');
+const destinationSelect = document.getElementById('co-destination');
 
 cekResiForm.addEventListener('submit', function(e) {
 	e.preventDefault();
@@ -192,102 +194,130 @@ var postUrl = url('cek-ongkir/lokal');
 const cekOngkirForm = document.getElementById('co-form');
 const kurirSelect = document.getElementById('co-kurir');
 
-document.getElementById('co-jenis-lokal').addEventListener('change', function(e) {
-	if (!this.checked) {
-		return;
-	}
-
-	postUrl = url('cek-ongkir/lokal');
-	cekOngkirForm.reset();
-
-	xhrGET({
-		link: url('get/kurir/lokal'),
-		catch: function() {
-			Swal.fire({
-				title: 'Gagal Mengambil Data Kurir',
-				text: 'Server sedang mengalami gangguan, silahkan coba lagi dalam beberapa menit',
-				icon: 'warning',
-				allowOutsideClick: true,
-				showConfirmButton: true,
-			});
-		},
-		error: function() {
-			Swal.fire({
-				title: 'Gagal Mengambil Data Kurir',
-				text: 'Gagal menghubungi server, periksa koneksi internet anda',
-				icon: 'error',
-				allowOutsideClick: true,
-				showConfirmButton: true,
-			});
-		},
-		success: function(res) {
-			kurirSelect.innerHTML = '';
-
-			let defaultOption = document.createElement('option');
-			defaultOption.setAttribute('value', '');
-			defaultOption.innerText = 'Pilih Kurir';
-			kurirSelect.appendChild(defaultOption);
-
-			res = JSON.parse(res);
-
-			if (res.result.length > 0) {
-				Array.prototype.forEach.call(res.result, function(item, i) {
-					let option = document.createElement('option');
-					option.setAttribute('value', item.id);
-					option.innerText = item.nama_pendek + ' - ' + item.nama;
-					kurirSelect.appendChild(option);
-				});
-			}
-		}
+ready(function() {
+	const originSelectChoice = new Choices(originSelect, {
+		allowHTML: false
 	});
-});
 
-document.getElementById('co-jenis-internasional').addEventListener('change', function(e) {
-	if (!this.checked) {
-		return;
-	}
+	const destinationSelectChoice = new Choices(destinationSelect, {
+		allowHTML: false
+	});
 
-	postUrl = url('cek-ongkir/internasional');
-	cekOngkirForm.reset();
-
-	xhrGET({
-		link: url('get/kurir/internasional'),
-		catch: function() {
-			Swal.fire({
-				title: 'Gagal Mengambil Data Kurir',
-				text: 'Server sedang mengalami gangguan, silahkan coba lagi dalam beberapa menit',
-				icon: 'warning',
-				allowOutsideClick: true,
-				showConfirmButton: true,
-			});
-		},
-		error: function() {
-			Swal.fire({
-				title: 'Gagal Mengambil Data Kurir',
-				text: 'Gagal menghubungi server, periksa koneksi internet anda',
-				icon: 'error',
-				allowOutsideClick: true,
-				showConfirmButton: true,
-			});
-		},
-		success: function(res) {
-			kurirSelect.innerHTML = '';
-
-			let defaultOption = document.createElement('option');
-			defaultOption.setAttribute('value', '');
-			defaultOption.innerText = 'Pilih Kurir';
-			kurirSelect.appendChild(defaultOption);
-
-			res = JSON.parse(res);
-
-			if (res.result.length > 0) {
-				Array.prototype.forEach.call(res.result, function(item, i) {
-					let option = document.createElement('option');
-					option.setAttribute('value', item.id);
-					option.innerText = item.nama_pendek + ' - ' + item.nama;
-					kurirSelect.appendChild(option);
-				});
-			}
+	document.getElementById('co-jenis-lokal').addEventListener('change', function(e) {
+		if (!this.checked) {
+			return;
 		}
+
+		postUrl = url('cek-ongkir/lokal');
+		cekOngkirForm.reset();
+
+		xhrGET({
+			link: url('get/kurir/lokal'),
+			catch: function() {
+				Swal.fire({
+					title: 'Gagal Mengambil Data Kurir',
+					text: 'Server sedang mengalami gangguan, silahkan coba lagi dalam beberapa menit',
+					icon: 'warning',
+					allowOutsideClick: true,
+					showConfirmButton: true,
+				});
+			},
+			error: function() {
+				Swal.fire({
+					title: 'Gagal Mengambil Data Kurir',
+					text: 'Gagal menghubungi server, periksa koneksi internet anda',
+					icon: 'error',
+					allowOutsideClick: true,
+					showConfirmButton: true,
+				});
+			},
+			success: function(res) {
+				kurirSelect.innerHTML = '';
+
+				let defaultOption = document.createElement('option');
+				defaultOption.setAttribute('value', '');
+				defaultOption.innerText = 'Pilih Kurir';
+				kurirSelect.appendChild(defaultOption);
+
+				res = JSON.parse(res);
+
+				if (res.result.length > 0) {
+					Array.prototype.forEach.call(res.result, function(item, i) {
+						let option = document.createElement('option');
+						option.setAttribute('value', item.id);
+						option.innerText = item.nama_pendek + ' - ' + item.nama;
+						kurirSelect.appendChild(option);
+					});
+				}
+			}
+		});
+
+		// modify asal dan tujuan
+		originSelectChoice.setChoices([
+			{ value: '', label: 'Pilih Kecamatan/Kota Asal', selected: true }
+		]);
+
+		destinationSelectChoice.setChoices([
+			{ value: '', label: 'Pilih Kecamatan/Kota Tujuan', selected: true }
+		]);
+	});
+
+	document.getElementById('co-jenis-internasional').addEventListener('change', function(e) {
+		if (!this.checked) {
+			return;
+		}
+
+		postUrl = url('cek-ongkir/internasional');
+		cekOngkirForm.reset();
+
+		xhrGET({
+			link: url('get/kurir/internasional'),
+			catch: function() {
+				Swal.fire({
+					title: 'Gagal Mengambil Data Kurir',
+					text: 'Server sedang mengalami gangguan, silahkan coba lagi dalam beberapa menit',
+					icon: 'warning',
+					allowOutsideClick: true,
+					showConfirmButton: true,
+				});
+			},
+			error: function() {
+				Swal.fire({
+					title: 'Gagal Mengambil Data Kurir',
+					text: 'Gagal menghubungi server, periksa koneksi internet anda',
+					icon: 'error',
+					allowOutsideClick: true,
+					showConfirmButton: true,
+				});
+			},
+			success: function(res) {
+				kurirSelect.innerHTML = '';
+
+				let defaultOption = document.createElement('option');
+				defaultOption.setAttribute('value', '');
+				defaultOption.innerText = 'Pilih Kurir';
+				kurirSelect.appendChild(defaultOption);
+
+				res = JSON.parse(res);
+
+				if (res.result.length > 0) {
+					Array.prototype.forEach.call(res.result, function(item, i) {
+						let option = document.createElement('option');
+						option.setAttribute('value', item.id);
+						option.innerText = item.nama_pendek + ' - ' + item.nama;
+						kurirSelect.appendChild(option);
+					});
+				}
+			}
+		});
+
+		// modify asal dan tujuan
+		originSelectChoice.setChoices([
+			{ value: '', label: 'Pilih Kota Asal', selected: true }
+		]);
+
+		destinationSelectChoice.setChoices([
+			{ value: '', label: 'Pilih Negara Tujuan', selected: true }
+		]);
 	});
 });
