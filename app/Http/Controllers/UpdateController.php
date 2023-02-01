@@ -254,7 +254,7 @@ class UpdateController extends Controller
 
     //=================================================================================================
 
-    public function internasionalTujuan(Request $request)
+    public function internasionalDestination(Request $request)
     {
         $inputToken = $request->input('token');
 
