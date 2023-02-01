@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\LacakPaketController;
 
 /*
@@ -21,4 +22,13 @@ use App\Http\Controllers\LacakPaketController;
 Route::get('/', [HomeController::class, 'index']);
 
 // lacak paket xhr
-Route::post('/lacak-paket', [LacakPaketController::class, 'index']);
+Route::post('lacak-paket', [LacakPaketController::class, 'index']);
+
+// update
+Route::prefix('update')->group(function() {
+    Route::post('provinsi', [UpdateController::class, 'provinsi']);
+    Route::post('kota', [UpdateController::class, 'kota']);
+    Route::post('kecamatan', [UpdateController::class, 'kecamatan']);
+    Route::post('internasional-origin', [UpdateController::class, 'internasional-origin']);
+    Route::post('internasional-tujuan', [UpdateController::class, 'internasional-tujuan']);
+});
