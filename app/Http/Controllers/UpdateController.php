@@ -18,6 +18,8 @@ use App\Libraries\ApiRajaongkirLibrary as ApiRajaongkir;
 use App\Models\LokalProvinsiModel;
 use App\Models\LokalKotaModel;
 use App\Models\LokalKecamatanModel;
+use App\Models\internasionalOriginProvinsiModel;
+use App\Models\internasionalOriginKotaModel;
 
 class UpdateController extends Controller
 {
@@ -184,6 +186,122 @@ class UpdateController extends Controller
                 ]);
 
             endforeach;
+
+        endforeach;
+
+        // return
+        return 'OK';
+    }
+
+    //=================================================================================================
+
+    public function internasionalOrigin(Request $request)
+    {
+        $inputToken = $request->input('token');
+
+        if (!$this->cekToken($inputToken))
+        {
+            return response()->json([
+                'code' => 403,
+                'desc' => 'Anda tidak memiliki izin untuk mengakses halaman ini'
+            ], 403);
+        }
+
+        $api = new ApiRajaongkir();
+        $res = $api->getInternationalOrigin();
+
+        try {
+
+            $res = json_decode($res, TRUE);
+
+        } catch (Exception $e) {
+
+            return response()->json([
+                'code' => 400,
+                'desc' => 'Bad Parameters'
+            ], 400);  
+        }
+
+        if (!isset($res['rajaongkir']))
+        {
+            return response()->json([
+                'code' => 400,
+                'desc' => 'Bad Parameters'
+            ], 400);   
+        }
+
+        foreach ($res['rajaongkir']['results'] as $item):
+
+            internasionalOriginProvinsiModel::updateOrCreate([
+                'id'   => $item['province_id'],
+                'nama' => $item['province'],
+            ]);
+
+            internasionalOriginKotaModel::updateOrCreate([
+                'id'      => $item['city_id'],
+                'nama'    => $item['city_name'],
+                'kodepos' => $item['postal_code'],
+
+                'internasional_origin_provinsi_id' => $item['province_id']
+            ]);
+
+        endforeach;
+
+        // return
+        return 'OK';
+    }
+
+    //=================================================================================================
+
+    public function internasionalTujuan(Request $request)
+    {
+        $inputToken = $request->input('token');
+
+        if (!$this->cekToken($inputToken))
+        {
+            return response()->json([
+                'code' => 403,
+                'desc' => 'Anda tidak memiliki izin untuk mengakses halaman ini'
+            ], 403);
+        }
+
+        $api = new ApiRajaongkir();
+        $res = $api->getInternationalDestination();
+
+        try {
+
+            $res = json_decode($res, TRUE);
+
+        } catch (Exception $e) {
+
+            return response()->json([
+                'code' => 400,
+                'desc' => 'Bad Parameters'
+            ], 400);  
+        }
+
+        if (!isset($res['rajaongkir']))
+        {
+            return response()->json([
+                'code' => 400,
+                'desc' => 'Bad Parameters'
+            ], 400);   
+        }
+
+        foreach ($res['rajaongkir']['results'] as $item):
+
+            internasionalOriginProvinsiModel::updateOrCreate([
+                'id'   => $item['province_id'],
+                'nama' => $item['province'],
+            ]);
+
+            internasionalOriginKotaModel::updateOrCreate([
+                'id'      => $item['city_id'],
+                'nama'    => $item['city_name'],
+                'kodepos' => $item['postal_code'],
+
+                'internasional_origin_provinsi_id' => $item['province_id']
+            ]);
 
         endforeach;
 

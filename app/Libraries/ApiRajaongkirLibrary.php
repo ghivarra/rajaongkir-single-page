@@ -54,11 +54,11 @@ class ApiRajaongkirLibrary
 
 	//=================================================================================================
 
-	public function getProvince()
+	public function getProvince(array $params = [])
 	{
 		$url    = "{$this->baseUrl}/province";
 		$client = Http::withHeaders($this->headers)->withOptions($this->options);
-		$res 	= $client->get($url);
+		$res 	= $client->get($url, $params);
 
 		if (empty($res))
 		{
@@ -70,11 +70,11 @@ class ApiRajaongkirLibrary
 
 	//=================================================================================================
 
-	public function getCity()
+	public function getCity(array $params = [])
 	{
 		$url    = "{$this->baseUrl}/city";
 		$client = Http::withHeaders($this->headers)->withOptions($this->options);
-		$res 	= $client->get($url);
+		$res 	= $client->get($url, $params);
 
 		if (empty($res))
 		{
@@ -89,6 +89,22 @@ class ApiRajaongkirLibrary
 	public function getSubdistrict(array $params = [])
 	{
 		$url    = "{$this->baseUrl}/subdistrict";
+		$client = Http::withHeaders($this->headers)->withOptions($this->options);
+		$res 	= $client->get($url, $params);
+
+		if (empty($res))
+		{
+			return $res;
+		}
+
+		return $res->body();
+	}
+
+	//=================================================================================================
+
+	public function getInternationalOrigin(array $params = [])
+	{
+		$url    = "{$this->baseUrl}/v2/internationalOrigin";
 		$client = Http::withHeaders($this->headers)->withOptions($this->options);
 		$res 	= $client->get($url, $params);
 
