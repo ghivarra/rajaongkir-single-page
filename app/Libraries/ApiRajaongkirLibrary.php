@@ -85,4 +85,20 @@ class ApiRajaongkirLibrary
 	}
 
 	//=================================================================================================
+
+	public function getSubdistrict(array $params = [])
+	{
+		$url    = "{$this->baseUrl}/subdistrict";
+		$client = Http::withHeaders($this->headers)->withOptions($this->options);
+		$res 	= $client->get($url, $params);
+
+		if (empty($res))
+		{
+			return $res;
+		}
+
+		return $res->body();
+	}
+
+	//=================================================================================================
 }

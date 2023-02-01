@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Libraries\ApiRajaongkirLibrary as ApiRajaongkir;
 use App\Models\LokalProvinsiModel;
 use App\Models\LokalKotaModel;
+use App\Models\LokalKecamatanModel;
 
 class UpdateController extends Controller
 {
@@ -122,6 +123,67 @@ class UpdateController extends Controller
 
                 'lokal_provinsi_id' => $item['province_id'],
             ]);
+
+        endforeach;
+
+        // return
+        return 'OK';
+    }
+
+    //=================================================================================================
+
+    public function kecamatan(Request $request)
+    {
+        $inputToken = $request->input('token');
+
+        if (!$this->cekToken($inputToken))
+        {
+            return response()->json([
+                'code' => 403,
+                'desc' => 'Anda tidak memiliki izin untuk mengakses halaman ini'
+            ], 403);
+        }
+
+        $kota = LokalKotaModel::select('id')->get();
+        $api  = new ApiRajaongkir();
+
+        foreach ($kota as $item):
+
+            $res = $api->getSubdistrict([
+                'city' => $item['id']
+            ]);
+
+            try {
+
+                $res = json_decode($res, TRUE);
+
+            } catch (Exception $e) {
+
+                return response()->json([
+                    'code' => 400,
+                    'desc' => 'Bad Parameters'
+                ], 400);  
+            }
+
+            if (!isset($res['rajaongkir']))
+            {
+                return response()->json([
+                    'code' => 400,
+                    'desc' => 'Bad Parameters'
+                ], 400);   
+            }
+
+            foreach ($res['rajaongkir']['results'] as $item):
+
+                LokalKecamatanModel::updateOrCreate([
+                    'id'      => $item['subdistrict_id'],
+                    'nama'    => $item['subdistrict_name'],
+
+                    'lokal_kota_id'     => $item['city_id'],
+                    'lokal_provinsi_id' => $item['province_id'],
+                ]);
+
+            endforeach;
 
         endforeach;
 
