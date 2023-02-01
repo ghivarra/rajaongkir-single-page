@@ -18,8 +18,9 @@ use App\Libraries\ApiRajaongkirLibrary as ApiRajaongkir;
 use App\Models\LokalProvinsiModel;
 use App\Models\LokalKotaModel;
 use App\Models\LokalKecamatanModel;
-use App\Models\internasionalOriginProvinsiModel;
-use App\Models\internasionalOriginKotaModel;
+use App\Models\InternasionalOriginProvinsiModel;
+use App\Models\InternasionalOriginKotaModel;
+use App\Models\InternasionalTujuanModel;
 
 class UpdateController extends Controller
 {
@@ -232,12 +233,12 @@ class UpdateController extends Controller
 
         foreach ($res['rajaongkir']['results'] as $item):
 
-            internasionalOriginProvinsiModel::updateOrCreate([
+            InternasionalOriginProvinsiModel::updateOrCreate([
                 'id'   => $item['province_id'],
                 'nama' => $item['province'],
             ]);
 
-            internasionalOriginKotaModel::updateOrCreate([
+            InternasionalOriginKotaModel::updateOrCreate([
                 'id'      => $item['city_id'],
                 'nama'    => $item['city_name'],
                 'kodepos' => $item['postal_code'],
@@ -290,17 +291,9 @@ class UpdateController extends Controller
 
         foreach ($res['rajaongkir']['results'] as $item):
 
-            internasionalOriginProvinsiModel::updateOrCreate([
-                'id'   => $item['province_id'],
-                'nama' => $item['province'],
-            ]);
-
-            internasionalOriginKotaModel::updateOrCreate([
-                'id'      => $item['city_id'],
-                'nama'    => $item['city_name'],
-                'kodepos' => $item['postal_code'],
-
-                'internasional_origin_provinsi_id' => $item['province_id']
+            InternasionalTujuanModel::updateOrCreate([
+                'id'   => $item['country_id'],
+                'nama' => $item['country_name'],
             ]);
 
         endforeach;

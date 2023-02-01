@@ -117,4 +117,20 @@ class ApiRajaongkirLibrary
 	}
 
 	//=================================================================================================
+
+	public function getInternationalDestination(array $params = [])
+	{
+		$url    = "{$this->baseUrl}/v2/internationalDestination";
+		$client = Http::withHeaders($this->headers)->withOptions($this->options);
+		$res 	= $client->get($url, $params);
+
+		if (empty($res))
+		{
+			return $res;
+		}
+
+		return $res->body();
+	}
+
+	//=================================================================================================
 }
