@@ -10,7 +10,7 @@
 				<h5 class="fw-bold mb-3">Pilih Layanan</h5>
 				<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 				  	<li class="nav-item border border-secondary border-2" role="presentation">
-				    	<button class="nav-link rounded-0 active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+				    	<button class="nav-link rounded-0 active" id="pills-cek-ongkir-tab" data-bs-toggle="pill" data-bs-target="#pills-cek-ongkir" type="button" role="tab" aria-controls="pills-cek-ongkir" aria-selected="true">
 				    		Cek Ongkir
 				    	</button>
 				  	</li>
@@ -23,8 +23,34 @@
 			</div>
 
 			<div class="tab-content">
-	  			<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">...</div>
-	  			<form action="{{ url('lacak-paket') }}" method="POST" class="tab-pane fade" id="pills-lacak-paket" role="tabpanel" aria-labelledby="pills-lacak-paket-tab" tabindex="0">
+
+	  			<form class="tab-pane fade show active" id="pills-cek-ongkir" role="tabpanel" aria-labelledby="pills-cek-ongkir-tab" tabindex="0">
+	  				
+	  				@csrf
+
+	  				<div class="form-group">
+	  					<h6 class="fw-bold mb-2">Jenis Pengiriman</h6>
+	  					<div class="d-flex">
+		  					<div class="form-check me-3">
+	  							<input class="form-check-input" type="radio" name="co-jenis" id="co-jenis-lokal" checked>
+	  							<label class="form-check-label" for="co-jenis-lokal">
+	    							Lokal
+	  							</label>
+							</div>
+							<div class="form-check">
+	  							<input class="form-check-input" type="radio" name="co-jenis" id="co-jenis-internasional">
+	  							<label class="form-check-label" for="co-jenis-internasional">
+	    							Internasional
+	  							</label>
+							</div>
+						</div>
+	  				</div>
+
+	  				
+
+	  			</form>
+
+	  			<form method="POST" class="tab-pane fade" id="pills-lacak-paket" role="tabpanel" aria-labelledby="pills-lacak-paket-tab" tabindex="0">
 
 	  				@csrf
 

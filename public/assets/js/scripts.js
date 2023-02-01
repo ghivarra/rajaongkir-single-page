@@ -1,7 +1,3 @@
-ready(function() {
-
-});
-
 const cekResiForm = document.getElementById('pills-lacak-paket');
 
 cekResiForm.addEventListener('submit', function(e) {
