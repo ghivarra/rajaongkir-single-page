@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\LacakPaketController;
+use App\Http\Controllers\Get\KurirController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,14 @@ Route::prefix('update')->group(function() {
     Route::get('kecamatan', [UpdateController::class, 'kecamatan']);
     Route::get('internasional-origin', [UpdateController::class, 'internasionalOrigin']);
     Route::get('internasional-tujuan', [UpdateController::class, 'internasionalTujuan']);
+});
+
+// get xhr
+Route::prefix('get')->group(function() {
+
+    Route::prefix('kurir')->group(function() {
+        Route::get('lokal', [KurirController::class, 'lokal']);
+        Route::get('internasional', [KurirController::class, 'internasional']);
+    });
+
 });

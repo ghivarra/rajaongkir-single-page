@@ -24,11 +24,9 @@
 
 			<div class="tab-content">
 
-	  			<form class="tab-pane fade show active" id="pills-cek-ongkir" role="tabpanel" aria-labelledby="pills-cek-ongkir-tab" tabindex="0">
-	  				
-	  				@csrf
+				<section class="tab-pane fade show active" id="pills-cek-ongkir" role="tabpanel" aria-labelledby="pills-cek-ongkir-tab" tabindex="0">
 
-	  				<div class="form-group">
+					<div class="form-group mb-4">
 	  					<h6 class="fw-bold mb-2">Jenis Pengiriman</h6>
 	  					<div class="d-flex">
 		  					<div class="form-check me-3">
@@ -46,9 +44,26 @@
 						</div>
 	  				</div>
 
-	  				
+		  			<form id="co-form">
+		  				
+		  				@csrf
 
-	  			</form>
+		  				<div class="form-group mb-4">
+		  					<label for="co-kurir" class="form-label mb-2 fw-bold">Jasa Ekspedisi/Kurir</label>
+		  					<select id="co-kurir" name="courier" class="form-select" required>
+		  						<option value="">Pilih Kurir</option>
+		  					</select>
+		  				</div>
+
+		  				<div class="form-action">
+		  					<button type="submit" class="btn btn-primary text-light me-2">Cek Tarif</button>
+		  					<button type="reset" class="btn btn-outline-primary">Kosongkan</button>
+		  				</div>
+
+		  			</form>
+					
+				</section>
+
 
 	  			<form method="POST" class="tab-pane fade" id="pills-lacak-paket" role="tabpanel" aria-labelledby="pills-lacak-paket-tab" tabindex="0">
 
