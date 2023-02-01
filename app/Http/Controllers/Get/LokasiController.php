@@ -66,7 +66,7 @@ class LokasiController extends Controller
 
         } elseif ($data['type'] == 'internasional') {
 
-            $searchOrigin = InternasionalOriginKotaModel::selectRaw('internasional_origin_kota.id as value, internasional_origin_kota.nama as label')
+            $searchOrigin = InternasionalOriginKotaModel::selectRaw("internasional_origin_kota.id as value, CONCAT(internasional_origin_kota.nama, ', ', internasional_origin_provinsi.nama) as label")
                                                         ->where('internasional_origin_kota.nama', 'ilike', "%{$data['query']}%")
                                                         ->leftJoin('internasional_origin_provinsi', 'internasional_origin_kota.internasional_origin_provinsi_id', '=', 'internasional_origin_provinsi.id')
                                                         ->orderBy('internasional_origin_kota.nama', 'ASC')
