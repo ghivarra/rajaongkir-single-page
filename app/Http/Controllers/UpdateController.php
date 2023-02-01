@@ -16,6 +16,7 @@
 use Illuminate\Http\Request;
 use App\Libraries\ApiRajaongkirLibrary as ApiRajaongkir;
 use App\Models\LokalProvinsiModel;
+use App\Models\LokalKotaModel;
 
 class UpdateController extends Controller
 {
@@ -67,6 +68,59 @@ class UpdateController extends Controller
             LokalProvinsiModel::updateOrCreate([
                 'id'    => $item['province_id'],
                 'nama'  => $item['province']
+            ]);
+
+        endforeach;
+
+        // return
+        return 'OK';
+    }
+
+    //=================================================================================================
+
+    public function kota(Request $request)
+    {
+        $inputToken = $request->input('token');
+
+        if (!$this->cekToken($inputToken))
+        {
+            return response()->json([
+                'code' => 403,
+                'desc' => 'Anda tidak memiliki izin untuk mengakses halaman ini'
+            ], 403);
+        }
+
+        $api = new ApiRajaongkir();
+        $res = $api->getCity();
+
+        try {
+
+            $res = json_decode($res, TRUE);
+
+        } catch (Exception $e) {
+
+            return response()->json([
+                'code' => 400,
+                'desc' => 'Bad Parameters'
+            ], 400);  
+        }
+
+        if (!isset($res['rajaongkir']))
+        {
+            return response()->json([
+                'code' => 400,
+                'desc' => 'Bad Parameters'
+            ], 400);   
+        }
+
+        foreach ($res['rajaongkir']['results'] as $item):
+
+            LokalKotaModel::updateOrCreate([
+                'id'      => $item['city_id'],
+                'nama'    => "{$item['type']} {$item['city_name']}",
+                'kodepos' => $item['postal_code'],
+
+                'lokal_provinsi_id' => $item['province_id'],
             ]);
 
         endforeach;

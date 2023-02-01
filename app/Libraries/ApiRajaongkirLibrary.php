@@ -69,4 +69,20 @@ class ApiRajaongkirLibrary
 	}
 
 	//=================================================================================================
+
+	public function getCity()
+	{
+		$url    = "{$this->baseUrl}/city";
+		$client = Http::withHeaders($this->headers)->withOptions($this->options);
+		$res 	= $client->get($url);
+
+		if (empty($res))
+		{
+			return $res;
+		}
+
+		return $res->body();
+	}
+
+	//=================================================================================================
 }
