@@ -9,9 +9,9 @@ class LokalProvinsiModel extends Model
 {
     use HasFactory;
 
+    public $timestamps = FALSE;
+
     protected $table = 'lokal_provinsi';
-    protected $primaryKey = 'id';
-    protected $incrementing = TRUE;
-    
+    protected $primaryKey = 'id';    
     protected $fillable = ['id', 'nama'];
 }

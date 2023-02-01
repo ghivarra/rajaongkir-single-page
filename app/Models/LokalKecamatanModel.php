@@ -9,9 +9,9 @@ class LokalKecamatanModel extends Model
 {
     use HasFactory;
 
+    public $timestamps = FALSE;
+
     protected $table = 'lokal_kecamatan';
-    protected $primaryKey = 'id';
-    protected $incrementing = TRUE;
-    
-    protected $fillable = ['id', 'nama', 'lokasi_kota_id', 'lokasi_provinsi_id'];
+    protected $primaryKey = 'id';    
+    protected $fillable = ['id', 'nama', 'lokal_kota_id', 'lokal_provinsi_id'];
 }

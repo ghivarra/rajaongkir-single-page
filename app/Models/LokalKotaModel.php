@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class LokalKotaModel extends Model
 {
     use HasFactory;
+    
+    public $timestamps = FALSE;
 
     protected $table = 'lokal_kota';
-    protected $primaryKey = 'id';
-    protected $incrementing = TRUE;
-    
-    protected $fillable = ['id', 'nama', 'lokasi_provinsi_id'];
+    protected $primaryKey = 'id';    
+    protected $fillable = ['id', 'nama', 'lokal_provinsi_id', 'tipe', 'kodepos'];
 }
