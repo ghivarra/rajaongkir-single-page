@@ -26,9 +26,9 @@ Route::post('lacak-paket', [LacakPaketController::class, 'index']);
 
 // update
 Route::prefix('update')->group(function() {
-    Route::post('provinsi', [UpdateController::class, 'provinsi']);
-    Route::post('kota', [UpdateController::class, 'kota']);
-    Route::post('kecamatan', [UpdateController::class, 'kecamatan']);
-    Route::post('internasional-origin', [UpdateController::class, 'internasional-origin']);
-    Route::post('internasional-tujuan', [UpdateController::class, 'internasional-tujuan']);
+    Route::get('provinsi', [UpdateController::class, 'provinsi']);
+    Route::get('kota', [UpdateController::class, 'kota']);
+    Route::get('kecamatan', [UpdateController::class, 'kecamatan']);
+    Route::get('internasional-origin', [UpdateController::class, 'internasional-origin']);
+    Route::get('internasional-tujuan', [UpdateController::class, 'internasional-tujuan']);
 });
