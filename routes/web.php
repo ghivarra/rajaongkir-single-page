@@ -29,6 +29,6 @@ Route::prefix('update')->group(function() {
     Route::get('provinsi', [UpdateController::class, 'provinsi']);
     Route::get('kota', [UpdateController::class, 'kota']);
     Route::get('kecamatan', [UpdateController::class, 'kecamatan']);
-    Route::get('internasional-origin', [UpdateController::class, 'internasional-origin']);
-    Route::get('internasional-tujuan', [UpdateController::class, 'internasional-tujuan']);
+    Route::get('internasional-origin', [UpdateController::class, 'internasionalOrigin']);
+    Route::get('internasional-tujuan', [UpdateController::class, 'internasionalTujuan']);
 });
