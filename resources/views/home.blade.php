@@ -30,13 +30,13 @@
 	  					<h6 class="fw-bold mb-2">Jenis Pengiriman</h6>
 	  					<div class="d-flex">
 		  					<div class="form-check me-3">
-	  							<input class="form-check-input" type="radio" name="co-jenis" id="co-jenis-lokal" checked>
+	  							<input class="form-check-input" type="radio" name="co-jenis" id="co-jenis-lokal" value="lokal" checked>
 	  							<label class="form-check-label" for="co-jenis-lokal">
 	    							Lokal
 	  							</label>
 							</div>
 							<div class="form-check">
-	  							<input class="form-check-input" type="radio" name="co-jenis" id="co-jenis-internasional">
+	  							<input class="form-check-input" type="radio" name="co-jenis" value="internasional" id="co-jenis-internasional">
 	  							<label class="form-check-label" for="co-jenis-internasional">
 	    							Internasional
 	  							</label>

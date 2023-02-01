@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UpdateController;
 use App\Http\Controllers\LacakPaketController;
 use App\Http\Controllers\Get\KurirController;
+use App\Http\Controllers\Get\LokasiController;
 
 /*
 |--------------------------------------------------------------------------
