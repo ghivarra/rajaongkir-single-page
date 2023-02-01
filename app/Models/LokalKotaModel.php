@@ -13,5 +13,5 @@ class LokalKotaModel extends Model
 
     protected $table = 'lokal_kota';
     protected $primaryKey = 'id';    
-    protected $fillable = ['id', 'nama', 'lokal_provinsi_id', 'tipe', 'kodepos'];
+    protected $fillable = ['id', 'nama', 'lokal_provinsi_id', 'kodepos'];
 }
