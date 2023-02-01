@@ -53,4 +53,20 @@ class ApiRajaongkirLibrary
 	}
 
 	//=================================================================================================
+
+	public function getProvince()
+	{
+		$url    = "{$this->baseUrl}/province";
+		$client = Http::withHeaders($this->headers)->withOptions($this->options);
+		$res 	= $client->get($url);
+
+		if (empty($res))
+		{
+			return $res;
+		}
+
+		return $res->body();
+	}
+
+	//=================================================================================================
 }
