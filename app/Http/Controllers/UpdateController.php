@@ -240,7 +240,7 @@ class UpdateController extends Controller
 
             InternasionalOriginKotaModel::updateOrCreate([
                 'id'      => $item['city_id'],
-                'nama'    => $item['city_name'],
+                'nama'    => "{$item['type']} {$item['city_name']}",
                 'kodepos' => $item['postal_code'],
 
                 'internasional_origin_provinsi_id' => $item['province_id']
