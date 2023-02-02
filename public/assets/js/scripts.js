@@ -473,7 +473,7 @@ cekOngkirForm.addEventListener('submit', function(e) {
 		success: function(res) {
 			res = JSON.parse(res);
 			console.log(res);
-			
+
 			if (res.code !== 200) {
 				Swal.hideLoading();
 				Swal.update({
@@ -487,6 +487,51 @@ cekOngkirForm.addEventListener('submit', function(e) {
 			}
 
 			Swal.close();
+
+			let cekOngkirModalBody = document.getElementById('coModalBody');
+			let cekOngkirModalButton = document.getElementById('coModalButton');
+			let cekOngkirModalClose = document.getElementById('coModalClose');
+
+			// set meta data
+			document.getElementById('coModalLabel').innerText = res.courier.nama_pendek;
+			document.getElementById('coModalLogo').setAttribute('src', url('assets/images/kurir/' + res.courier.logo));
+			document.getElementById('coModalLogo').setAttribute('alt', res.courier.nama);
+
+			// set origin & destination
+			let originText = (res.info.originType == 'subdistrict') ? res.origin.subdistrict_name + ' - ' + res.origin.city + ', ' + res.origin.province : res.origin.city_name + ', ' + res.origin.province;
+			let destinationText = (res.info.destinationType == 'subdistrict') ? res.destination.subdistrict_name + ' - ' + res.destination.city + ', ' + res.destination.province : res.destination.city_name + ', ' + res.destination.province;
+
+			document.getElementById('coModalAsal').innerText = originText;
+			document.getElementById('coModalTujuan').innerText = destinationText;
+
+			// set berat dan dimensi
+			let formData = new FormData(cekOngkirForm);
+			let dimensiHTML = (formData.get('length').length < 1) ? '<p>-</p>' : '<p><b>Panjang: </b>'+ formData.get('length') +' cm, <b>Lebar: </b>'+ formData.get('width') +' cm, <b>Tinggi: </b>'+ formData.get('height') +' cm, <b>Diameter: </b>'+ formData.get('diameter') +' cm</p>';
+			let weightText = new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 1 }).format((res.info.weight / 1000));
+
+			document.getElementById('coModalBerat').innerText = weightText + ' kg';
+			document.getElementById('coModalDimensi').innerHTML = dimensiHTML;
+
+			// create element tarif
+			let elementTarifWrapper = document.getElementById('coModalTarifWrapper');
+			elementTarifWrapper.innerHTML = '';
+
+			if (res.result.length < 1) {
+				elementTarifWrapper.innerHTML = '<div class="alert alert-warning" role="alert">Jasa Ekspedisi '+ res.courier.nama_pendek +' belum menyediakan pelayanan pengantaran dari '+ originText +' menuju '+ destinationText +'</div>';
+			} else {
+
+				let tarifCards = [];
+				Array.prototype.forEach.call(res.result, function(item, n) {
+					let durasi = (item.cost[0].etd.length < 1) ? '-' : item.cost[0].etd.replace(/hari/g, '') + ' Hari';
+					let tarif = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(item.cost[0].value);
+					tarif = tarif.replace(',00', '');
+
+					elementTarifWrapper.innerHTML += '<div class="co-modal-tarif mb-4 card"><button class="rounded-0 btn btn-dark text-start form-select" type="button" data-bs-toggle="collapse" data-bs-target="#coModalTarif'+ n +'" aria-expanded="true" aria-controls="coModalTarif'+ n +'">'+ item.service +' - '+ item.description +'</button><div id="coModalTarif'+ n +'" class="collapse show card-body"><div class="row row-cols-2 g-3"><div class="col"><h6 class="fw-bold" style="color: '+ res.courier.warna +';">Durasi</h6><p class="m-0">'+ durasi +'</p></div><div class="col"><h6 class="fw-bold" style="color: '+ res.courier.warna +';">Tarif</h6><p class="m-0">'+ tarif +'</p></div></div></div></div>';
+				});
+			}
+
+			// up modal
+			document.getElementById('coModalButton').click();
 		}
 	});
 });

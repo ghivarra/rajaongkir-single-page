@@ -58,6 +58,10 @@ main {
 .co-form-dimensi label {
 	min-width: 102px;
 }
+.co-modal-logo {
+	max-width: 150px;
+	height: auto;
+}
 
 .choices__list--dropdown .choices__item--selectable, .choices__list[aria-expanded] .choices__item--selectable {
 	padding-right: 10px;
