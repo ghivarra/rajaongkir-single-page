@@ -91,7 +91,7 @@ class CekOngkirController extends Controller
 
         // kirim api
         $api = new ApiRajaongkir();
-        $res = $api->localCostCheck($params);
+        $res = $api->getLocalCost($params);
 
         try {
 
@@ -115,8 +115,16 @@ class CekOngkirController extends Controller
 
         // return
         return response()->json([
-            'code'   => 200,
-            'result' => $res['rajaongkir']['results']
+            'code'        => 200,
+            'courier'     => KurirModel::select('id', 'nama_pendek', 'nama', 'logo', 'warna')->find($params['courier'])->toArray(),
+            'result'      => $res['rajaongkir']['results'][0]['costs'],
+            'origin'      => $res['rajaongkir']['origin_details'],
+            'destination' => $res['rajaongkir']['destination_details'],
+            'info'        => [
+                'weight'          => $res['rajaongkir']['query']['weight'],
+                'originType'      => $res['rajaongkir']['query']['originType'],
+                'destinationType' => $res['rajaongkir']['query']['destinationType'],
+            ]
         ]);
     }
 

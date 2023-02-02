@@ -133,4 +133,20 @@ class ApiRajaongkirLibrary
 	}
 
 	//=================================================================================================
+
+	public function getLocalCost(array $params = [])
+	{
+		$url    = "{$this->baseUrl}/cost";
+		$client = Http::withHeaders($this->headers)->withOptions($this->options);
+		$res 	= $client->asForm()->post($url, $params);
+
+		if (empty($res))
+		{
+			return $res;
+		}
+
+		return $res->body();
+	}
+
+	//=================================================================================================
 }
