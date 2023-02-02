@@ -40,8 +40,8 @@ main {
 /* MAIN  */
 .main-section {
 	width: 100%;
-	min-width: 300px;
-	max-width: 500px;
+	min-width: 400px;
+	max-width: 550px;
 }
 
 .cr-history-left {
@@ -54,6 +54,9 @@ main {
 	position: absolute;
 	left: -11px;
 	top: 0px;
+}
+.co-form-dimensi label {
+	min-width: 102px;
 }
 
 .choices__list--dropdown .choices__item--selectable, .choices__list[aria-expanded] .choices__item--selectable {

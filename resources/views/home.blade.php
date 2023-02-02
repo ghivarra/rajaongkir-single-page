@@ -74,6 +74,41 @@
 		  					</select>
 		  				</div>
 
+		  				<div class="form-group mb-4">
+		  					<label for="co-weight" class="form-label mb-2 fw-bold">Berat Paket <span class="fw-normal">(dalam kg)</span></label>
+		  					<input id="co-weight" type="text" name="weight" class="form-control" placeholder="contoh: 3.000 kg ditulis 3000 tanpa titik" required>
+		  				</div>
+
+		  				<div class="form-group mb-5">
+		  					<label class="form-label mb-2 fw-bold">Dimensi Paket <span class="fw-normal">(opsional)</span></label>
+		  					<div class="co-form-dimensi row row-cols-1 row-cols-sm-2 g-3">
+		  						<div class="col">
+		  							<div class="input-group">
+		  								<label for="co-length" class="input-group-text bg-dark text-light">Panjang</label>
+		  								<input id="co-length" type="number" name="co-length" class="form-control" placeholder="dalam cm">
+		  							</div>
+		  						</div>
+		  						<div class="col">
+		  							<div class="input-group">
+		  								<label for="co-width" class="input-group-text bg-dark text-light">Lebar</label>
+		  								<input id="co-width" type="number" name="co-width" class="form-control" placeholder="dalam cm">
+		  							</div>
+		  						</div>
+		  						<div class="col">
+		  							<div class="input-group">
+		  								<label for="co-height" class="input-group-text bg-dark text-light">Tinggi</label>
+		  								<input id="co-height" type="number" name="co-height" class="form-control" placeholder="dalam cm">
+		  							</div>
+		  						</div>
+		  						<div class="col">
+		  							<div class="input-group">
+		  								<label for="co-diameter" class="input-group-text bg-dark text-light">Diameter</label>
+		  								<input id="co-diameter" type="number" name="co-diameter" class="form-control" placeholder="dalam cm">
+		  							</div>
+		  						</div>
+		  					</div>
+		  				</div>
+
 		  				<div class="form-action">
 		  					<button type="submit" class="btn btn-primary text-light me-2">Cek Tarif</button>
 		  					<button type="reset" class="btn btn-outline-primary">Kosongkan</button>

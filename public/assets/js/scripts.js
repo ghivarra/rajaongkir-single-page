@@ -191,7 +191,7 @@ cekResiForm.addEventListener('submit', function(e) {
 
 // cek ongkir
 var postUrl = url('cek-ongkir/lokal');
-const timeout = 400;
+const timeout = 300;
 const cekOngkirForm = document.getElementById('co-form');
 const kurirSelect = document.getElementById('co-kurir');
 
@@ -356,11 +356,11 @@ ready(function() {
 
 		// modify asal dan tujuan
 		originSelectChoice.setChoices([
-			{ value: '', label: 'Pilih Kecamatan/Kota Asal', selected: true }
+			{ value: '', label: 'Ketik Kecamatan/Kota Asal', selected: true }
 		]);
 
 		destinationSelectChoice.setChoices([
-			{ value: '', label: 'Pilih Kecamatan/Kota Tujuan', selected: true }
+			{ value: '', label: 'Ketik Kecamatan/Kota Tujuan', selected: true }
 		]);
 	});
 
@@ -415,11 +415,11 @@ ready(function() {
 
 		// modify asal dan tujuan
 		originSelectChoice.setChoices([
-			{ value: '', label: 'Pilih Kota Asal', selected: true }
+			{ value: '', label: 'Ketik Kota Asal', selected: true }
 		]);
 
 		destinationSelectChoice.setChoices([
-			{ value: '', label: 'Pilih Negara Tujuan', selected: true }
+			{ value: '', label: 'Ketik Negara Tujuan', selected: true }
 		]);
 	});
 
@@ -431,5 +431,14 @@ ready(function() {
 	destinationSelect.addEventListener('search', function(item) {
 		let query = item.detail.value;
 		getDestination(query, destinationSelectChoice);
+	});
+});
+
+cekOngkirForm.addEventListener('submit', function(e) {
+	e.preventDefault();
+
+	xhrPOST({
+		link: postUrl,
+		data: new FormData(cekOngkirForm),
 	});
 });
