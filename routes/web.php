@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 // Controllers
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UpdateController;
+use App\Http\Controllers\CekOngkirController;
 use App\Http\Controllers\LacakPaketController;
 use App\Http\Controllers\Get\KurirController;
 use App\Http\Controllers\Get\LokasiController;
@@ -25,6 +26,12 @@ Route::get('/', [HomeController::class, 'index']);
 
 // lacak paket xhr
 Route::post('lacak-paket', [LacakPaketController::class, 'index']);
+
+// cek ongkir xhr
+Route::prefix('cek-ongkir')->group(function() {
+    Route::post('lokal', [CekOngkirController::class, 'lokal']);
+    Route::post('internasional', [CekOngkirController::class, 'internasional']);
+});
 
 // update
 Route::prefix('update')->group(function() {
