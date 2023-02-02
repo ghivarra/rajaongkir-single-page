@@ -228,4 +228,5 @@
 
 </main>
 
+@include('modal')
 @include('footer')
