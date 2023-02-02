@@ -437,8 +437,56 @@ ready(function() {
 cekOngkirForm.addEventListener('submit', function(e) {
 	e.preventDefault();
 
+	Swal.fire({
+		text: 'Memproses Permohonan',
+		showConfirmButton: false,
+		showCloseButton: false,
+		allowOutsideClick: false,
+		didOpen: function() {
+			Swal.showLoading();
+		}
+	});
+
 	xhrPOST({
 		link: postUrl,
 		data: new FormData(cekOngkirForm),
+		catch: function() {
+			Swal.hideLoading();
+			Swal.update({
+				title: 'Gagal Mengecek Tarif Pengiriman',
+				text: 'Server sedang mengalami gangguan, silahkan coba lagi dalam beberapa menit',
+				icon: 'warning',
+				allowOutsideClick: true,
+				showConfirmButton: true,
+			});
+		},
+		error: function() {
+			Swal.hideLoading();
+			Swal.update({
+				title: 'Gagal Mengecek Tarif Pengiriman',
+				text: 'Gagal menghubungi server, periksa koneksi internet anda',
+				icon: 'error',
+				allowOutsideClick: true,
+				showConfirmButton: true,
+			});
+		},
+		success: function(res) {
+			res = JSON.parse(res);
+			console.log(res);
+			
+			if (res.code !== 200) {
+				Swal.hideLoading();
+				Swal.update({
+					title: 'Gagal Mengecek Tarif Pengiriman',
+					text: res.desc,
+					icon: 'error',
+					allowOutsideClick: true,
+					showConfirmButton: true,
+				});
+				return;
+			}
+
+			Swal.close();
+		}
 	});
 });

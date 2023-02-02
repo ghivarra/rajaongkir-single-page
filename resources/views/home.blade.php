@@ -84,26 +84,26 @@
 		  					<div class="co-form-dimensi row row-cols-1 row-cols-sm-2 g-3">
 		  						<div class="col">
 		  							<div class="input-group">
-		  								<label for="co-length" class="input-group-text bg-dark text-light">Panjang</label>
-		  								<input id="co-length" type="number" name="co-length" class="form-control" placeholder="dalam cm">
+		  								<label for="co-length" class="input-group-text ">Panjang</label>
+		  								<input id="co-length" type="number" name="length" class="form-control" placeholder="dalam cm">
 		  							</div>
 		  						</div>
 		  						<div class="col">
 		  							<div class="input-group">
-		  								<label for="co-width" class="input-group-text bg-dark text-light">Lebar</label>
-		  								<input id="co-width" type="number" name="co-width" class="form-control" placeholder="dalam cm">
+		  								<label for="co-width" class="input-group-text ">Lebar</label>
+		  								<input id="co-width" type="number" name="width" class="form-control" placeholder="dalam cm">
 		  							</div>
 		  						</div>
 		  						<div class="col">
 		  							<div class="input-group">
-		  								<label for="co-height" class="input-group-text bg-dark text-light">Tinggi</label>
-		  								<input id="co-height" type="number" name="co-height" class="form-control" placeholder="dalam cm">
+		  								<label for="co-height" class="input-group-text ">Tinggi</label>
+		  								<input id="co-height" type="number" name="height" class="form-control" placeholder="dalam cm">
 		  							</div>
 		  						</div>
 		  						<div class="col">
 		  							<div class="input-group">
-		  								<label for="co-diameter" class="input-group-text bg-dark text-light">Diameter</label>
-		  								<input id="co-diameter" type="number" name="co-diameter" class="form-control" placeholder="dalam cm">
+		  								<label for="co-diameter" class="input-group-text ">Diameter</label>
+		  								<input id="co-diameter" type="number" name="diameter" class="form-control" placeholder="dalam cm">
 		  							</div>
 		  						</div>
 		  					</div>
