@@ -134,6 +134,7 @@ class LokasiController extends Controller
 
             $search = InternasionalTujuanModel::selectRaw('id as value, nama_trans as label')
                                               ->where('internasional_tujuan.nama_trans', 'ilike', "%{$data['query']}%")
+                                              ->orWhere('internasional_tujuan.nama', 'ilike', "%{$data['query']}%")
                                               ->orderBy('internasional_tujuan.nama_trans', 'ASC')
                                               ->limit(25)
                                               ->get()
