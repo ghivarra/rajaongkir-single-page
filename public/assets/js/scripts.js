@@ -472,7 +472,6 @@ cekOngkirForm.addEventListener('submit', function(e) {
 		},
 		success: function(res) {
 			res = JSON.parse(res);
-			console.log(res);
 
 			if (res.code !== 200) {
 				Swal.hideLoading();
