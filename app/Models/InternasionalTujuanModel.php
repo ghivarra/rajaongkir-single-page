@@ -13,5 +13,5 @@ class InternasionalTujuanModel extends Model
 
     protected $table = 'internasional_tujuan';
     protected $primaryKey = 'id';    
-    protected $fillable = ['id', 'nama'];
+    protected $fillable = ['id', 'nama', 'nama_trans'];
 }
