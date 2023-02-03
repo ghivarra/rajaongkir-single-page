@@ -498,8 +498,20 @@ cekOngkirForm.addEventListener('submit', function(e) {
 			document.getElementById('coModalLogo').setAttribute('alt', res.courier.nama);
 
 			// set origin & destination
-			let originText = (res.info.originType == 'subdistrict') ? res.origin.subdistrict_name + ' - ' + res.origin.city + ', ' + res.origin.province : res.origin.city_name + ', ' + res.origin.province;
-			let destinationText = (res.info.destinationType == 'subdistrict') ? res.destination.subdistrict_name + ' - ' + res.destination.city + ', ' + res.destination.province : res.destination.city_name + ', ' + res.destination.province;
+			let type = document.querySelector('input[name="co-jenis"]:checked').value;
+			let originText;
+			let destinationText;
+
+			if (type == 'lokal') {
+
+				originText = (res.info.originType == 'subdistrict') ? res.origin.subdistrict_name + ' - ' + res.origin.city + ', ' + res.origin.province : res.origin.city_name + ', ' + res.origin.province;
+				destinationText = (res.info.destinationType == 'subdistrict') ? res.destination.subdistrict_name + ' - ' + res.destination.city + ', ' + res.destination.province : res.destination.city_name + ', ' + res.destination.province;
+
+			} else {
+
+				originText = res.origin.city_name + ', ' + res.origin.province;
+				destinationText = res.destination.nama_trans;
+			}
 
 			document.getElementById('coModalAsal').innerText = originText;
 			document.getElementById('coModalTujuan').innerText = destinationText;
@@ -507,7 +519,7 @@ cekOngkirForm.addEventListener('submit', function(e) {
 			// set berat dan dimensi
 			let formData = new FormData(cekOngkirForm);
 			let dimensiHTML = (formData.get('length').length < 1) ? '<p>-</p>' : '<p><b>Panjang: </b>'+ formData.get('length') +' cm, <b>Lebar: </b>'+ formData.get('width') +' cm, <b>Tinggi: </b>'+ formData.get('height') +' cm, <b>Diameter: </b>'+ formData.get('diameter') +' cm</p>';
-			let weightText = new Intl.NumberFormat('id-ID', { maximumSignificantDigits: 1 }).format((res.info.weight / 1000));
+			let weightText = res.info.weight / 1000;
 
 			document.getElementById('coModalBerat').innerText = weightText + ' kg';
 			document.getElementById('coModalDimensi').innerHTML = dimensiHTML;
@@ -522,11 +534,22 @@ cekOngkirForm.addEventListener('submit', function(e) {
 
 				let tarifCards = [];
 				Array.prototype.forEach.call(res.result, function(item, n) {
-					let durasi = (item.cost[0].etd.length < 1) ? '-' : item.cost[0].etd.replace(/hari/g, '') + ' Hari';
-					let tarif = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(item.cost[0].value);
-					tarif = tarif.replace(',00', '');
 
-					elementTarifWrapper.innerHTML += '<div class="co-modal-tarif mb-4 card"><button class="rounded-0 btn btn-dark text-start form-select" type="button" data-bs-toggle="collapse" data-bs-target="#coModalTarif'+ n +'" aria-expanded="true" aria-controls="coModalTarif'+ n +'">'+ item.service +' - '+ item.description +'</button><div id="coModalTarif'+ n +'" class="collapse show card-body"><div class="row row-cols-2 g-3"><div class="col"><h6 class="fw-bold" style="color: '+ res.courier.warna +';">Durasi</h6><p class="m-0">'+ durasi +'</p></div><div class="col"><h6 class="fw-bold" style="color: '+ res.courier.warna +';">Tarif</h6><p class="m-0">'+ tarif +'</p></div></div></div></div>';
+					if (type == 'lokal') {
+						let durasi = (item.cost[0].etd.length < 1) ? '-' : item.cost[0].etd.replace(/hari/g, '') + ' Hari';
+						let tarif = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(item.cost[0].value);
+						tarif = tarif.replace(',00', '');
+
+						elementTarifWrapper.innerHTML += '<div class="co-modal-tarif mb-4 card"><button class="rounded-0 btn btn-dark text-start form-select" type="button" data-bs-toggle="collapse" data-bs-target="#coModalTarif'+ n +'" aria-expanded="true" aria-controls="coModalTarif'+ n +'">'+ item.service +' - '+ item.description +'</button><div id="coModalTarif'+ n +'" class="collapse show card-body"><div class="row row-cols-2 g-3"><div class="col"><h6 class="fw-bold" style="color: '+ res.courier.warna +';">Durasi</h6><p class="m-0">'+ durasi +'</p></div><div class="col"><h6 class="fw-bold" style="color: '+ res.courier.warna +';">Tarif</h6><p class="m-0">'+ tarif +'</p></div></div></div></div>';
+
+					} else {
+						
+						let durasi = (item.etd.length < 1) ? '-' : item.etd.replace(/hari/g, '') + ' Hari';
+						let tarif = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(item.cost);
+						tarif = tarif.replace(',00', '');
+
+						elementTarifWrapper.innerHTML += '<div class="co-modal-tarif mb-4 card"><button class="rounded-0 btn btn-dark text-start form-select" type="button" data-bs-toggle="collapse" data-bs-target="#coModalTarif'+ n +'" aria-expanded="true" aria-controls="coModalTarif'+ n +'">'+ item.service +'</button><div id="coModalTarif'+ n +'" class="collapse show card-body"><div class="row row-cols-2 g-3"><div class="col"><h6 class="fw-bold" style="color: '+ res.courier.warna +';">Durasi</h6><p class="m-0">'+ durasi +'</p></div><div class="col"><h6 class="fw-bold" style="color: '+ res.courier.warna +';">Tarif</h6><p class="m-0">'+ tarif +'</p></div></div></div></div>';
+					}
 				});
 			}
 
