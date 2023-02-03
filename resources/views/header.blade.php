@@ -14,7 +14,7 @@
 	<link async href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 	<link async rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/styles/choices.min.css" integrity="sha256-gS3HxgWFFFqEo0wQoALebu5XlWdYr3gqd4/Tk5wt8Ig=" crossorigin="anonymous">
 	<link async rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-custom.min.css') }}">
-	<link async rel="stylesheet" type="text/css" href="{{ asset('css/styles.css?v=1.0.0') }}">
+	<link async rel="stylesheet" type="text/css" href="{{ asset('css/styles.css?v=1.0.1') }}">
 
 </head>
 <body class="bg-secondary">

@@ -2,7 +2,7 @@
 <button id="coModalButton" type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#coModal"></button>
 
 <!-- Modal cek ongkir -->
-<div class="modal fade co-modal" id="coModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade co-modal" id="coModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
