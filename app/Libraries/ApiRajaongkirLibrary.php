@@ -149,4 +149,20 @@ class ApiRajaongkirLibrary
 	}
 
 	//=================================================================================================
+
+	public function getInternationalCost(array $params = [])
+	{
+		$url    = "{$this->baseUrl}/v2/internationalCost";
+		$client = Http::withHeaders($this->headers)->withOptions($this->options);
+		$res 	= $client->asForm()->post($url, $params);
+
+		if (empty($res))
+		{
+			return $res;
+		}
+
+		return $res->body();
+	}
+
+	//=================================================================================================
 }
