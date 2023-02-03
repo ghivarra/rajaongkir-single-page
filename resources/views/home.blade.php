@@ -9,13 +9,13 @@
 			<div class="mb-4">
 				<h5 class="fw-bold mb-3">Pilih Layanan</h5>
 				<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-				  	<li class="nav-item border border-secondary border-2" role="presentation">
-				    	<button class="nav-link rounded-0 active" id="pills-cek-ongkir-tab" data-bs-toggle="pill" data-bs-target="#pills-cek-ongkir" type="button" role="tab" aria-controls="pills-cek-ongkir" aria-selected="true">
+				  	<li class="nav-item" role="presentation">
+				    	<button class="nav-link rounded-0 rounded-start active border border-secondary border-2" id="pills-cek-ongkir-tab" data-bs-toggle="pill" data-bs-target="#pills-cek-ongkir" type="button" role="tab" aria-controls="pills-cek-ongkir" aria-selected="true">
 				    		Cek Ongkir
 				    	</button>
 				  	</li>
-				  	<li class="nav-item border border-secondary border-2" role="presentation">
-				    	<button class="nav-link rounded-0" id="pills-lacak-paket-tab" data-bs-toggle="pill" data-bs-target="#pills-lacak-paket" type="button" role="tab" aria-controls="pills-lacak-paket" aria-selected="false">
+				  	<li class="nav-item" role="presentation">
+				    	<button class="nav-link rounded-0 rounded-end border border-secondary border-2" id="pills-lacak-paket-tab" data-bs-toggle="pill" data-bs-target="#pills-lacak-paket" type="button" role="tab" aria-controls="pills-lacak-paket" aria-selected="false">
 				    		Lacak Paket
 				    	</button>
 				  	</li>
