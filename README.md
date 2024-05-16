@@ -6,6 +6,7 @@ Created using:
 - PHP 7.4
 - Laravel 8 Framework
 - Bootstrap 5 CSS Framework
+- Vanilla JS
 - PotgreSQL Database
 - Nginx - PHP-FPM Webserver
 
