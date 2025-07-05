@@ -51,7 +51,7 @@ class UpdateController extends Controller
 
             $res = json_decode($res, TRUE);
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
 
             return response()->json([
                 'code' => 400,
@@ -101,7 +101,7 @@ class UpdateController extends Controller
 
             $res = json_decode($res, TRUE);
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
 
             return response()->json([
                 'code' => 400,
@@ -160,7 +160,7 @@ class UpdateController extends Controller
 
                 $res = json_decode($res, TRUE);
 
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
 
                 return response()->json([
                     'code' => 400,
@@ -215,7 +215,7 @@ class UpdateController extends Controller
 
             $res = json_decode($res, TRUE);
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
 
             return response()->json([
                 'code' => 400,
@@ -273,7 +273,7 @@ class UpdateController extends Controller
 
             $res = json_decode($res, TRUE);
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
 
             return response()->json([
                 'code' => 400,

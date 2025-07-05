@@ -48,7 +48,7 @@ class LacakPaketController extends Controller
             return response()->json([
                 'code'        => 400,
                 'status'      => 'error',
-                'description' => implode(', ', $validator->errors->all())
+                'description' => $validator->errors()
             ]);
         }
 
@@ -71,7 +71,7 @@ class LacakPaketController extends Controller
 
             $res = json_decode($res, TRUE);
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
 
             return response()->json([
                 'code'        => 500,

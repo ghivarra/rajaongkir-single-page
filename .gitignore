@@ -1,5 +1,6 @@
 # environmental
 .phpintel
+/_old/*
 
 # assets files
 /public/assets/images/kurir/*
